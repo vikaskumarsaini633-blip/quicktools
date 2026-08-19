@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Image Compressor - QuickTools</title>
+
+<meta name="description"
+content="Compress images online for free with QuickTools.">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h2>🖼️ Image Compressor</h2>
+
+<p>
+अपनी image का size कम करें।
+</p>
+
+
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+>
+
+
+<br><br>
+
+
+<label>
+Image Quality
+</label>
+
+<br>
+
+<input
+type="range"
+id="quality"
+min="10"
+max="100"
+value="70"
+>
+
+
+<p>
+Quality:
+<span id="qualityValue">70</span>%
+</p>
+
+
+<button onclick="compressImage()">
+
+Compress Image
+
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+const quality =
+document.getElementById("quality");
+
+const qualityValue =
+document.getElementById("qualityValue");
+
+
+quality.addEventListener(
+"input",
+function(){
+
+qualityValue.textContent =
+this.value;
+
+});
+
+
+function compressImage(){
+
+const file =
+document.getElementById(
+"imageInput"
+).files[0];
+
+
+if(!file){
+
+alert(
+"पहले image select करें"
+);
+
+return;
+
+}
+
+
+const qualityValueNumber =
+quality.value / 100;
+
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(event){
+
+const img =
+new Image();
+
+
+img.onload =
+function(){
+
+const canvas =
+document.createElement(
+"canvas"
+);
+
+
+canvas.width =
+img.width;
+
+canvas.height =
+img.height;
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+ctx.drawImage(
+img,
+0,
+0
+);
+
+
+canvas.toBlob(
+
+function(blob){
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<p>
+Original Size:
+<strong>
+${(
+file.size / 1024
+).toFixed(1)}
+KB
+</strong>
+</p>
+
+<p>
+Compressed Size:
+<strong>
+${(
+blob.size / 1024
+).toFixed(1)}
+KB
+</strong>
+</p>
+
+<br>
+
+<a
+href="${url}"
+download="compressed-image.jpg"
+>
+
+<button>
+⬇️ Download Image
+</button>
+
+</a>
+
+</div>
+
+`;
+
+},
+
+"image/jpeg",
+
+qualityValueNumber
+
+);
+
+};
+
+
+img.src =
+event.target.result;
+
+};
+
+
+reader.readAsDataURL(
+file
+);
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
