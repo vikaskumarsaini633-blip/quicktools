@@ -1,42 +1,315 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>QuickTools - Free Online Tools</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <header>
+
 <h1>⚡ QuickTools</h1>
-<p>Free Online Tools</p>
+
+<p>50+ powerful online tools for your everyday needs.</p>
+
 </header>
+
 
 <main>
 
-<h2>Welcome to QuickTools</h2>
+<h2>Free Online Tools</h2>
 
 <p>
-50+ powerful online tools for your everyday needs.
+Fast, simple and useful tools for everyone.
 </p>
+
 
 <div class="tools">
 
-<div>🖼️ Image Tools</div>
-<div>📄 PDF Tools</div>
-<div>🔢 Calculator Tools</div>
-<div>📝 Text Tools</div>
-<div>🔧 Other Tools</div>
+
+<!-- IMAGE COMPRESSOR -->
+
+<div class="tool-card">
+
+<h3>🖼️ Image Compressor</h3>
+
+<p>Image का size कम करें।</p>
+
+<button onclick="openCompressor()">
+Open Tool →
+</button>
 
 </div>
 
+
+<!-- IMAGE RESIZER -->
+
+<div class="tool-card">
+
+<h3>📐 Image Resizer</h3>
+
+<p>Image की size बदलें।</p>
+
+<button>
+Coming Soon
+</button>
+
+</div>
+
+
+<!-- QR -->
+
+<div class="tool-card">
+
+<h3>🔳 QR Code Generator</h3>
+
+<p>QR Code बनाएँ।</p>
+
+<button>
+Coming Soon
+</button>
+
+</div>
+
+
+<!-- WORD -->
+
+<div class="tool-card">
+
+<h3>📝 Word Counter</h3>
+
+<p>Words और characters गिनें।</p>
+
+<button>
+Coming Soon
+</button>
+
+</div>
+
+
+<!-- AGE -->
+
+<div class="tool-card">
+
+<h3>🎂 Age Calculator</h3>
+
+<p>अपनी age calculate करें।</p>
+
+<button>
+Coming Soon
+</button>
+
+</div>
+
+
+<!-- PERCENTAGE -->
+
+<div class="tool-card">
+
+<h3>🔢 Percentage Calculator</h3>
+
+<p>Percentage calculate करें।</p>
+
+<button>
+Coming Soon
+</button>
+
+</div>
+
+
+</div>
+
+
+<!-- IMAGE COMPRESSOR -->
+
+<section
+id="compressor"
+style="display:none; margin-top:40px;"
+>
+
+<h2>🖼️ Image Compressor</h2>
+
+<p>
+अपनी image select करें और उसका size कम करें।
+</p>
+
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+>
+
+<br><br>
+
+<label>
+Quality:
+</label>
+
+<input
+type="range"
+id="quality"
+min="10"
+max="100"
+value="70"
+>
+
+<br><br>
+
+<button onclick="compressImage()">
+Compress Image
+</button>
+
+<div id="result"></div>
+
+</section>
+
+
 </main>
 
+
 <footer>
+
+<p>
 © 2026 QuickTools
+</p>
+
 </footer>
 
+
+<script>
+
+function openCompressor(){
+
+document.getElementById("compressor")
+.style.display="block";
+
+document.getElementById("compressor")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+function compressImage(){
+
+const file =
+document.getElementById("imageInput")
+.files[0];
+
+
+if(!file){
+
+alert("पहले image select करें");
+
+return;
+
+}
+
+
+const quality =
+document.getElementById("quality")
+.value / 100;
+
+
+const reader =
+new FileReader();
+
+
+reader.onload=function(e){
+
+const img=new Image();
+
+
+img.onload=function(){
+
+const canvas =
+document.createElement("canvas");
+
+
+canvas.width=img.width;
+
+canvas.height=img.height;
+
+
+const ctx =
+canvas.getContext("2d");
+
+
+ctx.drawImage(
+img,
+0,
+0
+);
+
+
+canvas.toBlob(
+
+function(blob){
+
+const url =
+URL.createObjectURL(blob);
+
+
+document.getElementById("result")
+.innerHTML=`
+
+<p>
+Original Size:
+${(file.size/1024).toFixed(1)} KB
+</p>
+
+<p>
+Compressed Size:
+${(blob.size/1024).toFixed(1)} KB
+</p>
+
+<a
+href="${url}"
+download="compressed-image.jpg"
+>
+
+<button>
+⬇️ Download Image
+</button>
+
+</a>
+
+`;
+
+},
+
+"image/jpeg",
+
+quality
+
+);
+
+};
+
+
+img.src=e.target.result;
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+
+</script>
+
+
 </body>
-</html>
+
+  </html>
