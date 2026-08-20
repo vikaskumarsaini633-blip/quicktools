@@ -10,6 +10,9 @@ content="width=device-width, initial-scale=1.0">
 
 <title>Unit Converter - QuickTools</title>
 
+<meta name="description"
+content="Convert length, weight, temperature and volume online for free with QuickTools.">
+
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -20,69 +23,97 @@ content="width=device-width, initial-scale=1.0">
 
 <h1>⚡ QuickTools</h1>
 
-<p>50+ powerful online tools for your everyday needs.</p>
+<p>Free Online Tools</p>
 
 </header>
 
 
 <main>
 
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
 <h2>🔄 Unit Converter</h2>
 
 <p>
-Length, Weight, Temperature और Volume convert करें।
+Length, weight, temperature और volume convert करें।
 </p>
 
 
-<div class="tools">
-
-<div class="tool-card">
-
-<h3>🔄 Unit Converter</h3>
-
-<input
-type="number"
-id="value"
-placeholder="Enter value"
->
-
 <select id="category" onchange="loadUnits()">
 
-<option value="length">📏 Length</option>
+<option value="length">
+📏 Length
+</option>
 
-<option value="weight">⚖️ Weight</option>
+<option value="weight">
+⚖️ Weight
+</option>
 
-<option value="temperature">🌡️ Temperature</option>
+<option value="temperature">
+🌡️ Temperature
+</option>
 
-<option value="volume">💧 Volume</option>
+<option value="volume">
+💧 Volume
+</option>
 
 </select>
 
 
+<br><br>
+
+
+<input
+type="number"
+id="value"
+placeholder="Enter Value"
+step="any"
+>
+
+
+<br><br>
+
+
 <select id="fromUnit"></select>
+
+
+<br><br>
+
 
 <select id="toUnit"></select>
 
 
+<br><br>
+
+
 <button onclick="convertUnit()">
-Convert →
+Convert
 </button>
 
 
-<p id="result"></p>
+<div id="result"></div>
 
-</div>
-
-</div>
-
-
-<br>
-
-<a href="index.html">
-<button>← Back to Home</button>
-</a>
+</section>
 
 </main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
 
 
 <script>
@@ -90,42 +121,64 @@ Convert →
 const units = {
 
 length: {
+
 Meter: 1,
+
 Kilometer: 1000,
+
 Centimeter: 0.01,
+
 Millimeter: 0.001,
+
 Foot: 0.3048,
+
 Inch: 0.0254
+
 },
+
 
 weight: {
+
 Kilogram: 1,
+
 Gram: 0.001,
+
 Milligram: 0.000001,
+
 Pound: 0.453592,
+
 Ounce: 0.0283495
+
 },
 
+
 volume: {
+
 Liter: 1,
+
 Milliliter: 0.001,
+
 "Cubic Meter": 1000,
+
 Gallon: 3.78541
+
 }
 
 };
 
 
-function loadUnits() {
+function loadUnits(){
 
 const category =
 document.getElementById("category").value;
+
 
 const from =
 document.getElementById("fromUnit");
 
 const to =
 document.getElementById("toUnit");
+
 
 from.innerHTML = "";
 
@@ -135,15 +188,19 @@ to.innerHTML = "";
 let list;
 
 
-if (category === "temperature") {
+if(category === "temperature"){
 
 list = [
+
 "Celsius",
+
 "Fahrenheit",
+
 "Kelvin"
+
 ];
 
-} else {
+}else{
 
 list =
 Object.keys(units[category]);
@@ -154,40 +211,48 @@ Object.keys(units[category]);
 list.forEach(unit => {
 
 from.innerHTML +=
-`<option value="${unit}">${unit}</option>`;
+`<option value="${unit}">
+${unit}
+</option>`;
+
 
 to.innerHTML +=
-`<option value="${unit}">${unit}</option>`;
+`<option value="${unit}">
+${unit}
+</option>`;
 
 });
 
 }
 
 
-function convertUnit() {
+function convertUnit(){
 
 const value =
 parseFloat(
 document.getElementById("value").value
 );
 
+
 const category =
 document.getElementById("category").value;
+
 
 const from =
 document.getElementById("fromUnit").value;
 
+
 const to =
 document.getElementById("toUnit").value;
+
 
 const result =
 document.getElementById("result");
 
 
-if (isNaN(value)) {
+if(isNaN(value)){
 
-result.innerHTML =
-"⚠️ Please enter a value.";
+alert("कृपया Value डालें");
 
 return;
 
@@ -197,25 +262,25 @@ return;
 let converted;
 
 
-if (category === "temperature") {
+if(category === "temperature"){
 
 let celsius;
 
 
-if (from === "Celsius") {
+if(from === "Celsius"){
 
 celsius = value;
 
 }
 
-else if (from === "Fahrenheit") {
+else if(from === "Fahrenheit"){
 
 celsius =
 (value - 32) * 5 / 9;
 
 }
 
-else {
+else{
 
 celsius =
 value - 273.15;
@@ -223,20 +288,20 @@ value - 273.15;
 }
 
 
-if (to === "Celsius") {
+if(to === "Celsius"){
 
 converted = celsius;
 
 }
 
-else if (to === "Fahrenheit") {
+else if(to === "Fahrenheit"){
 
 converted =
 (celsius * 9 / 5) + 32;
 
 }
 
-else {
+else{
 
 converted =
 celsius + 273.15;
@@ -245,7 +310,8 @@ celsius + 273.15;
 
 }
 
-else {
+
+else{
 
 converted =
 value *
@@ -255,10 +321,23 @@ units[category][to];
 }
 
 
-result.innerHTML =
-"✅ Result: " +
-converted.toFixed(2) +
-" " + to;
+result.innerHTML = `
+
+<div class="result-box">
+
+<h3>Conversion Result</h3>
+
+<p>
+
+<strong>
+${converted.toFixed(2)} ${to}
+</strong>
+
+</p>
+
+</div>
+
+`;
 
 }
 
@@ -266,6 +345,7 @@ converted.toFixed(2) +
 loadUnits();
 
 </script>
+
 
 </body>
 
