@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Number to Words - QuickTools</title>
+
+<meta name="description"
+content="Convert numbers into words online for free with QuickTools.">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h2>🔢 Number to Words</h2>
+
+<p>
+किसी भी Number को Words में बदलें।
+</p>
+
+
+<input
+type="number"
+id="number"
+placeholder="Enter Number"
+step="1"
+>
+
+
+<br><br>
+
+
+<button onclick="convertNumber()">
+Convert →
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function numberToWords(num){
+
+const ones = [
+
+"",
+
+"One",
+
+"Two",
+
+"Three",
+
+"Four",
+
+"Five",
+
+"Six",
+
+"Seven",
+
+"Eight",
+
+"Nine",
+
+"Ten",
+
+"Eleven",
+
+"Twelve",
+
+"Thirteen",
+
+"Fourteen",
+
+"Fifteen",
+
+"Sixteen",
+
+"Seventeen",
+
+"Eighteen",
+
+"Nineteen"
+
+];
+
+
+const tens = [
+
+"",
+
+"",
+
+"Twenty",
+
+"Thirty",
+
+"Forty",
+
+"Fifty",
+
+"Sixty",
+
+"Seventy",
+
+"Eighty",
+
+"Ninety"
+
+];
+
+
+if(num === 0){
+
+return "Zero";
+
+}
+
+
+if(num < 20){
+
+return ones[num];
+
+}
+
+
+if(num < 100){
+
+return tens[Math.floor(num / 10)] +
+(num % 10 !== 0 ? " " + ones[num % 10] : "");
+
+}
+
+
+if(num < 1000){
+
+return ones[Math.floor(num / 100)] +
+" Hundred" +
+(num % 100 !== 0
+? " " + numberToWords(num % 100)
+: "");
+
+}
+
+
+if(num < 100000){
+
+return numberToWords(Math.floor(num / 1000)) +
+" Thousand" +
+(num % 1000 !== 0
+? " " + numberToWords(num % 1000)
+: "");
+
+}
+
+
+if(num < 10000000){
+
+return numberToWords(Math.floor(num / 100000)) +
+" Lakh" +
+(num % 100000 !== 0
+? " " + numberToWords(num % 100000)
+: "");
+
+}
+
+
+if(num <= 999999999){
+
+return numberToWords(Math.floor(num / 10000000)) +
+" Crore" +
+(num % 10000000 !== 0
+? " " + numberToWords(num % 10000000)
+: "");
+
+}
+
+
+return "Number बहुत बड़ा है।";
+
+}
+
+
+function convertNumber(){
+
+const input =
+document.getElementById("number").value;
+
+
+const num =
+parseInt(input);
+
+
+if(
+input === "" ||
+isNaN(num) ||
+num < 0
+){
+
+alert("कृपया सही Number डालें");
+
+return;
+
+}
+
+
+const words =
+numberToWords(num);
+
+
+document.getElementById("result")
+.innerHTML = `
+
+<div class="result-box">
+
+<h3>Result</h3>
+
+<p>
+<strong>${words}</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
