@@ -1,197 +1,264 @@
 <!DOCTYPE html>
 <html lang="hi">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unit Converter - CLV Tools</title>
-  <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter - QuickTools</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-  <div class="container">
+<header>
 
-    <h1>🔄 Unit Converter</h1>
-    <p>Length, Weight, Temperature और Volume को आसानी से convert करें।</p>
+<h1>⚡ QuickTools</h1>
 
-    <div class="tool-card">
+<p>50+ powerful online tools for your everyday needs.</p>
 
-      <input type="number" id="unitValue" placeholder="Value">
+</header>
 
-      <select id="category" onchange="loadUnits()">
-        <option value="length">📏 Length</option>
-        <option value="weight">⚖️ Weight</option>
-        <option value="temperature">🌡️ Temperature</option>
-        <option value="volume">💧 Volume</option>
-      </select>
 
-      <select id="fromUnit"></select>
+<main>
 
-      <select id="toUnit"></select>
+<h2>🔄 Unit Converter</h2>
 
-      <button onclick="convertUnit()">Convert</button>
+<p>
+Length, Weight, Temperature और Volume convert करें।
+</p>
 
-      <div id="result"></div>
 
-    </div>
+<div class="tools">
 
-    <a href="index.html">⬅️ Back to Home</a>
+<div class="tool-card">
 
-  </div>
+<h3>🔄 Unit Converter</h3>
+
+<input
+type="number"
+id="value"
+placeholder="Enter value"
+>
+
+<select id="category" onchange="loadUnits()">
+
+<option value="length">📏 Length</option>
+
+<option value="weight">⚖️ Weight</option>
+
+<option value="temperature">🌡️ Temperature</option>
+
+<option value="volume">💧 Volume</option>
+
+</select>
+
+
+<select id="fromUnit"></select>
+
+<select id="toUnit"></select>
+
+
+<button onclick="convertUnit()">
+Convert →
+</button>
+
+
+<p id="result"></p>
+
+</div>
+
+</div>
+
+
+<br>
+
+<a href="index.html">
+<button>← Back to Home</button>
+</a>
+
+</main>
 
 
 <script>
 
 const units = {
 
-  length: {
-    Meter: 1,
-    Kilometer: 1000,
-    Centimeter: 0.01,
-    Millimeter: 0.001,
-    Foot: 0.3048,
-    Inch: 0.0254
-  },
+length: {
+Meter: 1,
+Kilometer: 1000,
+Centimeter: 0.01,
+Millimeter: 0.001,
+Foot: 0.3048,
+Inch: 0.0254
+},
 
-  weight: {
-    Kilogram: 1,
-    Gram: 0.001,
-    Milligram: 0.000001,
-    Pound: 0.453592,
-    Ounce: 0.0283495
-  },
+weight: {
+Kilogram: 1,
+Gram: 0.001,
+Milligram: 0.000001,
+Pound: 0.453592,
+Ounce: 0.0283495
+},
 
-  volume: {
-    Liter: 1,
-    Milliliter: 0.001,
-    "Cubic Meter": 1000,
-    Gallon: 3.78541
-  }
+volume: {
+Liter: 1,
+Milliliter: 0.001,
+"Cubic Meter": 1000,
+Gallon: 3.78541
+}
 
 };
 
 
 function loadUnits() {
 
-  const category =
-    document.getElementById("category").value;
+const category =
+document.getElementById("category").value;
 
-  const from =
-    document.getElementById("fromUnit");
+const from =
+document.getElementById("fromUnit");
 
-  const to =
-    document.getElementById("toUnit");
+const to =
+document.getElementById("toUnit");
 
-  from.innerHTML = "";
-  to.innerHTML = "";
+from.innerHTML = "";
 
-  if (category === "temperature") {
+to.innerHTML = "";
 
-    const temperatureUnits =
-      ["Celsius", "Fahrenheit", "Kelvin"];
 
-    temperatureUnits.forEach(unit => {
+let list;
 
-      from.innerHTML +=
-        `<option value="${unit}">${unit}</option>`;
 
-      to.innerHTML +=
-        `<option value="${unit}">${unit}</option>`;
+if (category === "temperature") {
 
-    });
+list = [
+"Celsius",
+"Fahrenheit",
+"Kelvin"
+];
 
-  } else {
+} else {
 
-    Object.keys(units[category]).forEach(unit => {
+list =
+Object.keys(units[category]);
 
-      from.innerHTML +=
-        `<option value="${unit}">${unit}</option>`;
+}
 
-      to.innerHTML +=
-        `<option value="${unit}">${unit}</option>`;
 
-    });
+list.forEach(unit => {
 
-  }
+from.innerHTML +=
+`<option value="${unit}">${unit}</option>`;
+
+to.innerHTML +=
+`<option value="${unit}">${unit}</option>`;
+
+});
 
 }
 
 
 function convertUnit() {
 
-  const value =
-    parseFloat(document.getElementById("unitValue").value);
+const value =
+parseFloat(
+document.getElementById("value").value
+);
 
-  const category =
-    document.getElementById("category").value;
+const category =
+document.getElementById("category").value;
 
-  const from =
-    document.getElementById("fromUnit").value;
+const from =
+document.getElementById("fromUnit").value;
 
-  const to =
-    document.getElementById("toUnit").value;
+const to =
+document.getElementById("toUnit").value;
 
-  const result =
-    document.getElementById("result");
-
-
-  if (isNaN(value)) {
-
-    result.innerHTML =
-      "⚠️ Please enter a value.";
-
-    return;
-
-  }
+const result =
+document.getElementById("result");
 
 
-  let converted;
+if (isNaN(value)) {
+
+result.innerHTML =
+"⚠️ Please enter a value.";
+
+return;
+
+}
 
 
-  if (category === "temperature") {
-
-    let celsius;
-
-    if (from === "Celsius") {
-      celsius = value;
-    }
-
-    else if (from === "Fahrenheit") {
-      celsius = (value - 32) * 5 / 9;
-    }
-
-    else {
-      celsius = value - 273.15;
-    }
+let converted;
 
 
-    if (to === "Celsius") {
-      converted = celsius;
-    }
+if (category === "temperature") {
 
-    else if (to === "Fahrenheit") {
-      converted = (celsius * 9 / 5) + 32;
-    }
-
-    else {
-      converted = celsius + 273.15;
-    }
-
-  }
-
-  else {
-
-    converted =
-      value *
-      units[category][from] /
-      units[category][to];
-
-  }
+let celsius;
 
 
-  result.innerHTML =
-    `✅ ${value} ${from} = 
-    <strong>${converted.toFixed(4)} ${to}</strong>`;
+if (from === "Celsius") {
+
+celsius = value;
+
+}
+
+else if (from === "Fahrenheit") {
+
+celsius =
+(value - 32) * 5 / 9;
+
+}
+
+else {
+
+celsius =
+value - 273.15;
+
+}
+
+
+if (to === "Celsius") {
+
+converted = celsius;
+
+}
+
+else if (to === "Fahrenheit") {
+
+converted =
+(celsius * 9 / 5) + 32;
+
+}
+
+else {
+
+converted =
+celsius + 273.15;
+
+}
+
+}
+
+else {
+
+converted =
+value *
+units[category][from] /
+units[category][to];
+
+}
+
+
+result.innerHTML =
+"✅ Result: " +
+converted.toFixed(2) +
+" " + to;
 
 }
 
@@ -201,4 +268,5 @@ loadUnits();
 </script>
 
 </body>
+
 </html>
