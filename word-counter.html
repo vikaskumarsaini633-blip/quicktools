@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Word Counter - QuickTools</title>
+
+<meta name="description"
+content="Count words and characters online for free with QuickTools.">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h2>📝 Word Counter</h2>
+
+<p>
+अपने text के words और characters गिनें।
+</p>
+
+
+<textarea
+id="text"
+rows="10"
+placeholder="यहाँ अपना text लिखें..."
+></textarea>
+
+
+<br><br>
+
+
+<button onclick="countText()">
+Count Words
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function countText(){
+
+const text =
+document.getElementById(
+"text"
+).value;
+
+
+const trimmed =
+text.trim();
+
+
+let words = 0;
+
+if(trimmed.length > 0){
+
+words =
+trimmed.split(/\s+/).length;
+
+}
+
+
+const characters =
+text.length;
+
+
+const charactersWithoutSpaces =
+text.replace(/\s/g,"").length;
+
+
+const lines =
+text.length > 0
+? text.split(/\n/).length
+: 0;
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>Result</h3>
+
+<p>
+📝 Words:
+<strong>${words}</strong>
+</p>
+
+<p>
+🔤 Characters:
+<strong>${characters}</strong>
+</p>
+
+<p>
+🔡 Characters without spaces:
+<strong>
+${charactersWithoutSpaces}
+</strong>
+</p>
+
+<p>
+📋 Lines:
+<strong>${lines}</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
