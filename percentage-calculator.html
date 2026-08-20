@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator - QuickTools</title>
+
+<meta name="description"
+content="Calculate percentages online for free with QuickTools.">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h2>🔢 Percentage Calculator</h2>
+
+<p>
+आसानी से percentage calculate करें।
+</p>
+
+
+<h3>किसी संख्या का प्रतिशत</h3>
+
+<input
+type="number"
+id="number"
+placeholder="Number"
+>
+
+
+<input
+type="number"
+id="percent"
+placeholder="Percentage"
+>
+
+
+<br><br>
+
+
+<button onclick="calculatePercentage()">
+Calculate
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function calculatePercentage(){
+
+const number =
+parseFloat(
+document.getElementById(
+"number"
+).value
+);
+
+
+const percent =
+parseFloat(
+document.getElementById(
+"percent"
+).value
+);
+
+
+if(
+isNaN(number) ||
+isNaN(percent)
+){
+
+alert(
+"दोनों numbers डालें"
+);
+
+return;
+
+}
+
+
+const answer =
+(number * percent) / 100;
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>Result</h3>
+
+<p>
+
+${percent}% of ${number}
+
+=
+
+<strong>
+${answer}
+</strong>
+
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
