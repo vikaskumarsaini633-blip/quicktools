@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Image Resizer - QuickTools</title>
+
+<meta name="description"
+content="Resize images online for free with QuickTools.">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h2>📐 Image Resizer</h2>
+
+<p>
+अपनी image की Width और Height बदलें।
+</p>
+
+
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="width"
+placeholder="New Width (px)"
+>
+
+
+<input
+type="number"
+id="height"
+placeholder="New Height (px)"
+>
+
+
+<br><br>
+
+
+<button onclick="resizeImage()">
+
+Resize Image
+
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function resizeImage(){
+
+const file =
+document.getElementById(
+"imageInput"
+).files[0];
+
+
+const width =
+parseInt(
+document.getElementById(
+"width"
+).value
+);
+
+
+const height =
+parseInt(
+document.getElementById(
+"height"
+).value
+);
+
+
+if(!file){
+
+alert(
+"पहले image select करें"
+);
+
+return;
+
+}
+
+
+if(!width || !height){
+
+alert(
+"Width और Height डालें"
+);
+
+return;
+
+}
+
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(event){
+
+const img =
+new Image();
+
+
+img.onload =
+function(){
+
+const canvas =
+document.createElement(
+"canvas"
+);
+
+
+canvas.width =
+width;
+
+canvas.height =
+height;
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+ctx.drawImage(
+img,
+0,
+0,
+width,
+height
+);
+
+
+canvas.toBlob(
+
+function(blob){
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<p>
+New Size:
+<strong>
+${width} × ${height}px
+</strong>
+</p>
+
+<br>
+
+<a
+href="${url}"
+download="resized-image.jpg"
+>
+
+<button>
+⬇️ Download Resized Image
+</button>
+
+</a>
+
+</div>
+
+`;
+
+},
+
+"image/jpeg",
+
+0.9
+
+);
+
+};
+
+
+img.src =
+event.target.result;
+
+};
+
+
+reader.readAsDataURL(
+file
+);
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
