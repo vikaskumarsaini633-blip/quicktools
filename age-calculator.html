@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Age Calculator - QuickTools</title>
+
+<meta name="description"
+content="Calculate your exact age online for free with QuickTools.">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h2>🎂 Age Calculator</h2>
+
+<p>
+अपनी जन्म तारीख डालकर exact age पता करें।
+</p>
+
+
+<input
+type="date"
+id="birthDate"
+>
+
+
+<br><br>
+
+
+<button onclick="calculateAge()">
+Calculate Age
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function calculateAge(){
+
+const input =
+document.getElementById(
+"birthDate"
+).value;
+
+
+if(!input){
+
+alert(
+"पहले अपनी जन्म तारीख चुनें"
+);
+
+return;
+
+}
+
+
+const birth =
+new Date(input);
+
+const today =
+new Date();
+
+
+if(birth > today){
+
+alert(
+"जन्म तारीख भविष्य की नहीं हो सकती"
+);
+
+return;
+
+}
+
+
+let years =
+today.getFullYear()
+-
+birth.getFullYear();
+
+
+let months =
+today.getMonth()
+-
+birth.getMonth();
+
+
+let days =
+today.getDate()
+-
+birth.getDate();
+
+
+if(days < 0){
+
+months--;
+
+const previousMonth =
+new Date(
+today.getFullYear(),
+today.getMonth(),
+0
+);
+
+days +=
+previousMonth.getDate();
+
+}
+
+
+if(months < 0){
+
+years--;
+
+months += 12;
+
+}
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>आपकी उम्र</h3>
+
+<p>
+🎂 <strong>
+${years} वर्ष
+</strong>
+</p>
+
+<p>
+📅 <strong>
+${months} महीने
+</strong>
+</p>
+
+<p>
+📆 <strong>
+${days} दिन
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
