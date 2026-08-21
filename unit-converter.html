@@ -8,10 +8,13 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Unit Converter - QuickTools</title>
+<title>Unit Converter - Length, Weight, Temperature & Volume | QuickTools</title>
 
 <meta name="description"
-content="Convert length, weight, temperature and volume online for free with QuickTools.">
+content="Free Unit Converter से length, weight, temperature और volume की units आसानी से convert करें। Value डालें, units चुनें और तुरंत conversion result पाएं।">
+
+<meta name="robots"
+content="index, follow">
 
 <link rel="stylesheet" href="style.css">
 
@@ -21,7 +24,7 @@ content="Convert length, weight, temperature and volume online for free with Qui
 
 <header>
 
-<h1>⚡ QuickTools</h1>
+<p class="site-title">⚡ QuickTools</p>
 
 <p>Free Online Tools</p>
 
@@ -41,14 +44,20 @@ content="Convert length, weight, temperature and volume online for free with Qui
 
 <section class="compressor">
 
-<h2>🔄 Unit Converter</h2>
+<h1>🔄 Unit Converter - Convert Units Online</h1>
 
 <p>
-Length, weight, temperature और volume convert करें।
+Length, weight, temperature और volume की units आसानी
+से convert करें। अपनी value डालें, from और to units
+चुनें और तुरंत conversion result पाएं।
+यह Unit Converter free और easy to use है।
 </p>
 
 
-<select id="category" onchange="loadUnits()">
+<select
+id="category"
+onchange="loadUnits()"
+aria-label="Select unit category">
 
 <option value="length">
 📏 Length
@@ -77,19 +86,26 @@ type="number"
 id="value"
 placeholder="Enter Value"
 step="any"
+aria-label="Enter value"
 >
 
 
 <br><br>
 
 
-<select id="fromUnit"></select>
+<select
+id="fromUnit"
+aria-label="Select unit to convert from">
+</select>
 
 
 <br><br>
 
 
-<select id="toUnit"></select>
+<select
+id="toUnit"
+aria-label="Select unit to convert to">
+</select>
 
 
 <br><br>
@@ -101,6 +117,60 @@ Convert
 
 
 <div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Unit Converter क्या है?</h2>
+
+<p>
+Unit Converter एक online tool है जिसकी मदद से आप
+एक unit को दूसरी unit में आसानी से convert कर सकते हैं।
+इसमें length, weight, temperature और volume जैसी
+categories उपलब्ध हैं।
+</p>
+
+
+<h2>कौन-कौन सी Units Convert कर सकते हैं?</h2>
+
+<p>
+<strong>Length:</strong> Meter, Kilometer, Centimeter,
+Millimeter, Foot और Inch।
+</p>
+
+<p>
+<strong>Weight:</strong> Kilogram, Gram, Milligram,
+Pound और Ounce।
+</p>
+
+<p>
+<strong>Temperature:</strong> Celsius, Fahrenheit और Kelvin।
+</p>
+
+<p>
+<strong>Volume:</strong> Liter, Milliliter, Cubic Meter और Gallon।
+</p>
+
+
+<h2>Unit Conversion कैसे करें?</h2>
+
+<p>
+सबसे पहले unit category चुनें। फिर अपनी value enter करें।
+इसके बाद From Unit और To Unit चुनें और
+<strong>Convert</strong> button पर क्लिक करें।
+आपको तुरंत conversion result दिखाई देगा।
+</p>
+
+
+<h2>Free Online Unit Converter</h2>
+
+<p>
+QuickTools का Unit Converter free है और इसे mobile,
+tablet या computer पर आसानी से इस्तेमाल किया जा सकता है।
+किसी registration की जरूरत नहीं है।
+</p>
 
 </section>
 
