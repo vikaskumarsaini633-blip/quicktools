@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Discount Calculator - Calculate Discount Online | QuickTools</title>
+
+<meta name="description"
+content="Free Discount Calculator से discount amount, final price और आपकी बचत आसानी से calculate करें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h1>🏷️ Discount Calculator</h1>
+
+<p>
+Original price और discount percentage डालकर
+final price और आपकी savings पता करें।
+</p>
+
+
+<input
+type="number"
+id="price"
+placeholder="Original Price"
+step="0.01"
+min="0"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="discount"
+placeholder="Discount (%)"
+step="0.01"
+min="0"
+max="100"
+>
+
+
+<br><br>
+
+
+<button onclick="calculateDiscount()">
+Calculate Discount
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Discount Calculator क्या है?</h2>
+
+<p>
+Discount Calculator एक free online tool है जिसकी मदद से
+आप किसी product की original price और discount percentage
+के आधार पर discount amount और final price calculate कर सकते हैं।
+</p>
+
+
+<h2>Discount कैसे calculate करें?</h2>
+
+<p>
+Original price में से discount amount घटाने पर आपको
+discount के बाद की final price मिलती है।
+</p>
+
+
+<h2>Discount Calculator की खास बातें</h2>
+
+<p>
+✓ Free online calculator<br>
+✓ Discount amount calculate करें<br>
+✓ Final price पता करें<br>
+✓ कितनी saving हुई देखें<br>
+✓ Mobile और computer दोनों पर इस्तेमाल करें
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+
+<div style="margin-top:20px;">
+
+<a href="index.html">Home</a>
+
+&nbsp; | &nbsp;
+
+<a href="about.html">About Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="contact.html">Contact Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="privacy-policy.html">Privacy Policy</a>
+
+&nbsp; | &nbsp;
+
+<a href="terms.html">Terms & Conditions</a>
+
+&nbsp; | &nbsp;
+
+<a href="disclaimer.html">Disclaimer</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function calculateDiscount(){
+
+const price =
+parseFloat(
+document.getElementById("price").value
+);
+
+const discount =
+parseFloat(
+document.getElementById("discount").value
+);
+
+
+if(
+isNaN(price) ||
+isNaN(discount) ||
+price <= 0 ||
+discount < 0 ||
+discount > 100
+){
+
+alert(
+"कृपया सही Price और Discount डालें"
+);
+
+return;
+
+}
+
+
+const savings =
+(price * discount) / 100;
+
+
+const finalPrice =
+price - savings;
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>Calculation Result</h3>
+
+<p>
+Original Price:
+<strong>
+₹${price.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Discount:
+<strong>
+${discount}%
+</strong>
+</p>
+
+<p>
+You Save:
+<strong>
+₹${savings.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Final Price:
+<strong>
+₹${finalPrice.toFixed(2)}
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
