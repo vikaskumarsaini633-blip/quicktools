@@ -8,10 +8,13 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Image Compressor - QuickTools</title>
+<title>Image Compressor - Compress Images Online Free | QuickTools</title>
 
 <meta name="description"
-content="Compress images online for free with QuickTools.">
+content="Free Image Compressor से JPG और अन्य images का file size आसानी से कम करें। Image upload करें, quality चुनें और compressed image तुरंत download करें।">
+
+<meta name="robots"
+content="index, follow">
 
 <link rel="stylesheet" href="style.css">
 
@@ -21,7 +24,7 @@ content="Compress images online for free with QuickTools.">
 
 <header>
 
-<h1>⚡ QuickTools</h1>
+<p class="site-title">⚡ QuickTools</p>
 
 <p>Free Online Tools</p>
 
@@ -41,10 +44,13 @@ content="Compress images online for free with QuickTools.">
 
 <section class="compressor">
 
-<h2>🖼️ Image Compressor</h2>
+<h1>🖼️ Image Compressor - Compress Images Online</h1>
 
 <p>
-अपनी image का size कम करें।
+अपनी image का file size आसानी से कम करें।
+Image upload करें, compression quality चुनें और
+compressed image तुरंत download करें।
+यह Image Compressor free और आसान है।
 </p>
 
 
@@ -52,13 +58,14 @@ content="Compress images online for free with QuickTools.">
 type="file"
 id="imageInput"
 accept="image/*"
+aria-label="Select an image to compress"
 >
 
 
 <br><br>
 
 
-<label>
+<label for="quality">
 Image Quality
 </label>
 
@@ -87,6 +94,51 @@ Compress Image
 
 
 <div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Image Compressor क्या है?</h2>
+
+<p>
+Image Compressor एक online tool है जिसकी मदद से
+आप image का file size कम कर सकते हैं। इससे बड़ी
+images को छोटा करके उन्हें आसानी से share या upload
+किया जा सकता है।
+</p>
+
+
+<h2>Image को Compress कैसे करें?</h2>
+
+<p>
+सबसे पहले अपनी image select करें। इसके बाद Image Quality
+slider से अपनी पसंद की quality चुनें और
+<strong>Compress Image</strong> button पर क्लिक करें।
+Compression पूरा होने के बाद compressed image को download
+कर सकते हैं।
+</p>
+
+
+<h2>Image Compressor की खास बातें</h2>
+
+<p>
+✓ Free online image compression<br>
+✓ आसान और fast interface<br>
+✓ Image quality चुनने का option<br>
+✓ Compressed image download कर सकते हैं<br>
+✓ Mobile और computer दोनों पर इस्तेमाल किया जा सकता है
+</p>
+
+
+<h2>Image Size कम क्यों करें?</h2>
+
+<p>
+बड़ी image files को upload या share करने में ज्यादा समय
+लग सकता है। Image compress करने से file size कम हो सकता है,
+जिससे storage और sharing में मदद मिल सकती है।
+</p>
 
 </section>
 
@@ -215,7 +267,8 @@ Compressed Size:
 <strong>
 ${(
 blob.size / 1024
-).toFixed(1)}
+).toFixed(1)
+}
 KB
 </strong>
 </p>
@@ -265,4 +318,4 @@ file
 
 </body>
 
-  </html>
+</html>
