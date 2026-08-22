@@ -1,280 +1,300 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Age Difference Calculator - Calculate Age Gap</title>
-  <meta name="description" content="Calculate the exact age difference between two people in years, months, and days with our free Age Difference Calculator.">
-  <meta name="keywords" content="age difference calculator, age gap calculator, calculate age difference, age calculator">
+<meta charset="UTF-8">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #222;
-    }
+<title>Age Difference Calculator - Calculate Age Gap | QuickTools</title>
 
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-    }
+<meta name="description"
+content="Free Age Difference Calculator से दो लोगों की date of birth डालकर exact age difference years, months और days में calculate करें।">
 
-    .calculator {
-      background: #fff;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
+<meta name="robots"
+content="index, follow">
 
-    h1 {
-      text-align: center;
-      margin-bottom: 10px;
-      color: #222;
-    }
+<link rel="stylesheet" href="style.css">
 
-    .intro {
-      text-align: center;
-      color: #666;
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
-
-    .input-group {
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    input[type="date"] {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      background: #007bff;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    .result {
-      display: none;
-      margin-top: 25px;
-      padding: 20px;
-      background: #f0f8ff;
-      border-radius: 10px;
-      border: 1px solid #cfe8ff;
-    }
-
-    .result h2 {
-      text-align: center;
-      margin-top: 0;
-    }
-
-    .main-result {
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      margin: 15px 0;
-    }
-
-    .total-days {
-      text-align: center;
-      color: #555;
-    }
-
-    .error {
-      display: none;
-      color: #d00;
-      margin-top: 15px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .info {
-      margin-top: 30px;
-      line-height: 1.7;
-    }
-
-    .info h2 {
-      font-size: 21px;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 20px auto;
-        padding: 12px;
-      }
-
-      .calculator {
-        padding: 20px;
-      }
-
-      h1 {
-        font-size: 26px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="container">
+<header>
 
-    <div class="calculator">
+<h1>⚡ QuickTools</h1>
 
-      <h1>Age Difference Calculator</h1>
+<p>Free Online Tools</p>
 
-      <p class="intro">
-        Enter two dates of birth to calculate the exact age difference
-        in years, months and days.
-      </p>
+</header>
 
-      <div class="input-group">
-        <label for="date1">First Person Date of Birth</label>
-        <input type="date" id="date1">
-      </div>
 
-      <div class="input-group">
-        <label for="date2">Second Person Date of Birth</label>
-        <input type="date" id="date2">
-      </div>
+<main>
 
-      <button onclick="calculateDifference()">
-        Calculate Age Difference
-      </button>
+<a href="index.html">
 
-      <div class="error" id="error">
-        Please select both dates.
-      </div>
+<button>
+← Back to Home
+</button>
 
-      <div class="result" id="result">
+</a>
 
-        <h2>Age Difference</h2>
 
-        <div class="main-result" id="differenceText"></div>
+<section class="compressor">
 
-        <p class="total-days" id="totalDays"></p>
+<h1>📅 Age Difference Calculator</h1>
 
-      </div>
+<p>
+दो लोगों की date of birth डालकर उनकी exact age difference
+years, months और days में calculate करें।
+</p>
 
-      <div class="info">
 
-        <h2>What is an Age Difference Calculator?</h2>
+<label for="date1">
+पहले व्यक्ति की Date of Birth
+</label>
 
-        <p>
-          An Age Difference Calculator helps you find the exact age gap
-          between two people. Simply enter both dates of birth and the
-          calculator will show the difference in years, months and days.
-        </p>
+<br>
 
-        <h2>How to Use</h2>
+<input
+type="date"
+id="date1"
+>
 
-        <p>
-          Enter the date of birth of the first person, enter the date of
-          birth of the second person, and click the Calculate Age Difference
-          button.
-        </p>
+<br><br>
 
-      </div>
 
-    </div>
+<label for="date2">
+दूसरे व्यक्ति की Date of Birth
+</label>
 
-  </div>
+<br>
 
-  <script>
-    function calculateDifference() {
+<input
+type="date"
+id="date2"
+>
 
-      const date1Input = document.getElementById("date1").value;
-      const date2Input = document.getElementById("date2").value;
+<br><br>
 
-      const error = document.getElementById("error");
-      const result = document.getElementById("result");
 
-      if (!date1Input || !date2Input) {
-        error.style.display = "block";
-        result.style.display = "none";
-        return;
-      }
+<button onclick="calculateDifference()">
+Calculate Age Difference
+</button>
 
-      error.style.display = "none";
 
-      let date1 = new Date(date1Input + "T00:00:00");
-      let date2 = new Date(date2Input + "T00:00:00");
+<div id="result"></div>
 
-      let olderDate;
-      let newerDate;
+</section>
 
-      if (date1 <= date2) {
-        olderDate = date1;
-        newerDate = date2;
-      } else {
-        olderDate = date2;
-        newerDate = date1;
-      }
 
-      let years = newerDate.getFullYear() - olderDate.getFullYear();
-      let months = newerDate.getMonth() - olderDate.getMonth();
-      let days = newerDate.getDate() - olderDate.getDate();
+<section>
 
-      if (days < 0) {
-        months--;
+<h2>Age Difference Calculator क्या है?</h2>
 
-        const previousMonth = new Date(
-          newerDate.getFullYear(),
-          newerDate.getMonth(),
-          0
-        );
+<p>
+Age Difference Calculator एक free online tool है जिसकी मदद से
+आप दो लोगों की उम्र के बीच का exact difference पता कर सकते हैं।
+यह result years, months और days में दिखाता है।
+</p>
 
-        days += previousMonth.getDate();
-      }
 
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
+<h2>Age Difference कैसे calculate करें?</h2>
 
-      const differenceMilliseconds =
-        newerDate.getTime() - olderDate.getTime();
+<p>
+सबसे पहले दोनों लोगों की Date of Birth select करें।
+इसके बाद Calculate Age Difference button पर click करें।
+Tool दोनों dates के बीच का exact age difference calculate कर देगा।
+</p>
 
-      const totalDays = Math.floor(
-        differenceMilliseconds / (1000 * 60 * 60 * 24)
-      );
 
-      document.getElementById("differenceText").textContent =
-        years + " Years, " +
-        months + " Months, " +
-        days + " Days";
+<h2>Age Difference Calculator की खास बातें</h2>
 
-      document.getElementById("totalDays").textContent =
-        "Total difference: " + totalDays.toLocaleString() + " days";
+<p>
+✓ Free online age difference calculator<br>
+✓ Years, months और days में result<br>
+✓ दो लोगों की age compare करें<br>
+✓ आसान और fast calculation<br>
+✓ Mobile और computer दोनों पर इस्तेमाल करें
+</p>
 
-      result.style.display = "block";
-    }
-  </script>
+</section>
+
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+
+<div style="margin-top:20px;">
+
+<a href="index.html">Home</a>
+
+&nbsp; | &nbsp;
+
+<a href="about.html">About Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="contact.html">Contact Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="privacy-policy.html">Privacy Policy</a>
+
+&nbsp; | &nbsp;
+
+<a href="terms.html">Terms & Conditions</a>
+
+&nbsp; | &nbsp;
+
+<a href="disclaimer.html">Disclaimer</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function calculateDifference(){
+
+const date1Value =
+document.getElementById("date1").value;
+
+const date2Value =
+document.getElementById("date2").value;
+
+
+if(!date1Value || !date2Value){
+
+alert(
+"कृपया दोनों Date of Birth select करें"
+);
+
+return;
+
+}
+
+
+let date1 =
+new Date(date1Value + "T00:00:00");
+
+let date2 =
+new Date(date2Value + "T00:00:00");
+
+
+let olderDate;
+let newerDate;
+
+
+if(date1 <= date2){
+
+olderDate = date1;
+newerDate = date2;
+
+}else{
+
+olderDate = date2;
+newerDate = date1;
+
+}
+
+
+let years =
+newerDate.getFullYear()
+-
+olderDate.getFullYear();
+
+let months =
+newerDate.getMonth()
+-
+olderDate.getMonth();
+
+let days =
+newerDate.getDate()
+-
+olderDate.getDate();
+
+
+if(days < 0){
+
+months--;
+
+const previousMonth =
+new Date(
+newerDate.getFullYear(),
+newerDate.getMonth(),
+0
+);
+
+days += previousMonth.getDate();
+
+}
+
+
+if(months < 0){
+
+years--;
+
+months += 12;
+
+}
+
+
+const differenceMilliseconds =
+newerDate.getTime()
+-
+olderDate.getTime();
+
+
+const totalDays =
+Math.floor(
+differenceMilliseconds /
+(1000 * 60 * 60 * 24)
+);
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>Age Difference Result</h3>
+
+<p>
+Age Difference:
+<strong>
+${years} Years,
+${months} Months,
+${days} Days
+</strong>
+</p>
+
+<p>
+Total Difference:
+<strong>
+${totalDays.toLocaleString()} Days
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
 
 </body>
+
 </html>
