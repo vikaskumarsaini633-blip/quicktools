@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Loan EMI Calculator - Calculate EMI Online | QuickTools</title>
+
+<meta name="description"
+content="Free Loan EMI Calculator से loan amount, interest rate और loan tenure डालकर monthly EMI, total interest और total payment calculate करें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h1>🏦 Loan EMI Calculator</h1>
+
+<p>
+Loan amount, interest rate और loan tenure डालकर
+अपनी monthly EMI calculate करें।
+</p>
+
+
+<input
+type="number"
+id="loanAmount"
+placeholder="Loan Amount (₹)"
+step="0.01"
+min="1"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="interestRate"
+placeholder="Annual Interest Rate (%)"
+step="0.01"
+min="0"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="loanYears"
+placeholder="Loan Tenure (Years)"
+step="1"
+min="1"
+>
+
+
+<br><br>
+
+
+<button onclick="calculateEMI()">
+Calculate EMI
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Loan EMI Calculator क्या है?</h2>
+
+<p>
+Loan EMI Calculator एक free online tool है जिसकी मदद से
+आप loan की monthly EMI, total interest और total payment
+का अनुमान लगा सकते हैं।
+</p>
+
+
+<h2>EMI कैसे calculate होती है?</h2>
+
+<p>
+EMI loan amount, interest rate और loan tenure पर depend करती है।
+Loan की अवधि और interest rate बदलने पर monthly EMI भी बदल सकती है।
+</p>
+
+
+<h2>Loan EMI Calculator की खास बातें</h2>
+
+<p>
+✓ Free online EMI calculator<br>
+✓ Monthly EMI calculate करें<br>
+✓ Total interest पता करें<br>
+✓ Total payment देखें<br>
+✓ Mobile और computer दोनों पर इस्तेमाल करें
+</p>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+
+<div style="margin-top:20px;">
+
+<a href="index.html">Home</a>
+
+&nbsp; | &nbsp;
+
+<a href="about.html">About Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="contact.html">Contact Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="privacy-policy.html">Privacy Policy</a>
+
+&nbsp; | &nbsp;
+
+<a href="terms.html">Terms & Conditions</a>
+
+&nbsp; | &nbsp;
+
+<a href="disclaimer.html">Disclaimer</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function calculateEMI(){
+
+const principal =
+parseFloat(
+document.getElementById("loanAmount").value
+);
+
+const annualRate =
+parseFloat(
+document.getElementById("interestRate").value
+);
+
+const years =
+parseFloat(
+document.getElementById("loanYears").value
+);
+
+
+if(
+isNaN(principal) ||
+isNaN(annualRate) ||
+isNaN(years) ||
+principal <= 0 ||
+annualRate < 0 ||
+years <= 0
+){
+
+alert(
+"कृपया सही Loan Amount, Interest Rate और Tenure डालें"
+);
+
+return;
+
+}
+
+
+const months =
+years * 12;
+
+const monthlyRate =
+annualRate / 12 / 100;
+
+
+let emi;
+
+
+if(monthlyRate === 0){
+
+emi =
+principal / months;
+
+}else{
+
+emi =
+principal *
+monthlyRate *
+Math.pow(
+1 + monthlyRate,
+months
+) /
+(
+Math.pow(
+1 + monthlyRate,
+months
+) - 1
+);
+
+}
+
+
+const totalPayment =
+emi * months;
+
+const totalInterest =
+totalPayment - principal;
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>EMI Result</h3>
+
+<p>
+Monthly EMI:
+<strong>
+₹${emi.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Total Interest:
+<strong>
+₹${totalInterest.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Total Payment:
+<strong>
+₹${totalPayment.toFixed(2)}
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
