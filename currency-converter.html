@@ -200,9 +200,34 @@ result.innerHTML =
 
 try{
 
+if(from === to){
+
+result.innerHTML = `
+
+<div class="result-box">
+
+<h3>Conversion Result</h3>
+
+<p>
+<strong>
+${amount.toLocaleString()} ${from}
+=
+${amount.toLocaleString()} ${to}
+</strong>
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
 const response =
 await fetch(
-`https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`
+`https://api.frankfurter.dev/v2/rate/${from}/${to}`
 );
 
 
@@ -218,7 +243,7 @@ await response.json();
 
 
 const converted =
-data.rates[to];
+amount * data.rate;
 
 
 result.innerHTML = `
@@ -241,6 +266,11 @@ maximumFractionDigits:2
 })} ${to}
 </strong>
 
+</p>
+
+<p>
+Exchange Rate:
+1 ${from} = ${data.rate} ${to}
 </p>
 
 </div>
@@ -267,8 +297,3 @@ Currency conversion अभी उपलब्ध नहीं है।
 }
 
 </script>
-
-
-</body>
-
-</html>
