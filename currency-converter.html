@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Currency Converter - Convert Currency Online | QuickTools</title>
+
+<meta name="description"
+content="Free Currency Converter से INR, USD, EUR, GBP और दूसरी currencies को आसानी से convert करें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<p class="site-title">⚡ QuickTools</p>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h1>💱 Currency Converter</h1>
+
+<p>
+एक currency की value को दूसरी currency में आसानी से convert करें।
+</p>
+
+
+<input
+type="number"
+id="amount"
+placeholder="Amount"
+step="0.01"
+min="0"
+>
+
+
+<br><br>
+
+
+<select id="fromCurrency">
+
+<option value="INR">🇮🇳 INR - Indian Rupee</option>
+
+<option value="USD">🇺🇸 USD - US Dollar</option>
+
+<option value="EUR">🇪🇺 EUR - Euro</option>
+
+<option value="GBP">🇬🇧 GBP - British Pound</option>
+
+<option value="AED">🇦🇪 AED - UAE Dirham</option>
+
+<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+
+<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+
+<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+
+</select>
+
+
+<br><br>
+
+
+<select id="toCurrency">
+
+<option value="USD">🇺🇸 USD - US Dollar</option>
+
+<option value="INR">🇮🇳 INR - Indian Rupee</option>
+
+<option value="EUR">🇪🇺 EUR - Euro</option>
+
+<option value="GBP">🇬🇧 GBP - British Pound</option>
+
+<option value="AED">🇦🇪 AED - UAE Dirham</option>
+
+<option value="AUD">🇦🇺 AUD - Australian Dollar</option>
+
+<option value="CAD">🇨🇦 CAD - Canadian Dollar</option>
+
+<option value="JPY">🇯🇵 JPY - Japanese Yen</option>
+
+</select>
+
+
+<br><br>
+
+
+<button onclick="convertCurrency()">
+Convert Currency
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Currency Converter क्या है?</h2>
+
+<p>
+Currency Converter एक free online tool है जिसकी मदद से
+आप एक देश की currency को दूसरी currency में convert कर सकते हैं।
+</p>
+
+
+<h2>Currency कैसे Convert करें?</h2>
+
+<p>
+सबसे पहले amount डालें। फिर जिस currency से convert करना है
+उसे select करें और जिस currency में result चाहिए उसे select करें।
+इसके बाद Convert Currency button पर click करें।
+</p>
+
+
+<h2>Currency Converter की खास बातें</h2>
+
+<p>
+✓ Free online currency converter<br>
+✓ INR, USD, EUR, GBP और कई currencies<br>
+✓ आसान और fast calculation<br>
+✓ Mobile और computer दोनों पर इस्तेमाल करें
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+async function convertCurrency(){
+
+const amount =
+parseFloat(
+document.getElementById("amount").value
+);
+
+const from =
+document.getElementById("fromCurrency").value;
+
+const to =
+document.getElementById("toCurrency").value;
+
+const result =
+document.getElementById("result");
+
+
+if(
+isNaN(amount) ||
+amount <= 0
+){
+
+alert("कृपया सही amount डालें");
+
+return;
+
+}
+
+
+result.innerHTML =
+"<p>Converting...</p>";
+
+
+try{
+
+const response =
+await fetch(
+`https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`
+);
+
+
+if(!response.ok){
+
+throw new Error("Conversion failed");
+
+}
+
+
+const data =
+await response.json();
+
+
+const converted =
+data.rates[to];
+
+
+result.innerHTML = `
+
+<div class="result-box">
+
+<h3>Conversion Result</h3>
+
+<p>
+
+<strong>
+${amount.toLocaleString()} ${from}
+</strong>
+
+=
+
+<strong>
+${converted.toLocaleString(undefined,{
+maximumFractionDigits:2
+})} ${to}
+</strong>
+
+</p>
+
+</div>
+
+`;
+
+}catch(error){
+
+result.innerHTML = `
+
+<div class="result-box">
+
+<p>
+Currency conversion अभी उपलब्ध नहीं है।
+कृपया थोड़ी देर बाद फिर कोशिश करें।
+</p>
+
+</div>
+
+`;
+
+}
+
+}
+
+</script>
+
+
+</body>
+
+</html>
