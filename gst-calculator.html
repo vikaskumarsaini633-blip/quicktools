@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GST Calculator - Calculate GST Online | QuickTools</title>
+
+<meta name="description"
+content="Free GST Calculator से GST amount, total price और GST सहित या बिना GST की कीमत आसानी से calculate करें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<header>
+
+<h1>⚡ QuickTools</h1>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h1>🧾 GST Calculator</h1>
+
+<p>
+Amount और GST percentage डालकर GST amount और
+total price आसानी से calculate करें।
+</p>
+
+
+<input
+type="number"
+id="amount"
+placeholder="Amount (₹)"
+step="0.01"
+min="0"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="gst"
+placeholder="GST (%)"
+value="18"
+step="0.01"
+min="0"
+max="100"
+>
+
+
+<br><br>
+
+
+<select id="mode">
+
+<option value="add">
+GST जोड़ें
+</option>
+
+<option value="remove">
+GST हटाएँ
+</option>
+
+</select>
+
+
+<br><br>
+
+
+<button onclick="calculateGST()">
+Calculate GST
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>GST Calculator क्या है?</h2>
+
+<p>
+GST Calculator एक free online tool है जिसकी मदद से
+आप किसी amount पर GST की राशि और GST सहित total
+amount आसानी से calculate कर सकते हैं।
+</p>
+
+
+<h2>GST कैसे calculate करें?</h2>
+
+<p>
+GST जोड़ने के लिए amount को GST percentage से
+calculate करके मूल amount में जोड़ा जाता है।
+GST हटाने के लिए GST सहित price से original price
+calculate की जाती है।
+</p>
+
+
+<h2>GST Calculator की खास बातें</h2>
+
+<p>
+✓ Free online GST calculator<br>
+✓ GST amount calculate करें<br>
+✓ GST सहित total price पता करें<br>
+✓ GST हटाकर original price पता करें<br>
+✓ Mobile और computer दोनों पर इस्तेमाल करें
+</p>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+
+<div style="margin-top:20px;">
+
+<a href="index.html">Home</a>
+
+&nbsp; | &nbsp;
+
+<a href="about.html">About Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="contact.html">Contact Us</a>
+
+&nbsp; | &nbsp;
+
+<a href="privacy-policy.html">Privacy Policy</a>
+
+&nbsp; | &nbsp;
+
+<a href="terms.html">Terms & Conditions</a>
+
+&nbsp; | &nbsp;
+
+<a href="disclaimer.html">Disclaimer</a>
+
+</div>
+
+</footer>
+
+
+<script>
+
+function calculateGST(){
+
+const amount =
+parseFloat(
+document.getElementById("amount").value
+);
+
+const gstRate =
+parseFloat(
+document.getElementById("gst").value
+);
+
+const mode =
+document.getElementById("mode").value;
+
+
+if(
+isNaN(amount) ||
+isNaN(gstRate) ||
+amount <= 0 ||
+gstRate < 0 ||
+gstRate > 100
+){
+
+alert(
+"कृपया सही Amount और GST प्रतिशत डालें"
+);
+
+return;
+
+}
+
+
+let originalAmount;
+let gstAmount;
+let totalAmount;
+
+
+if(mode === "add"){
+
+originalAmount = amount;
+
+gstAmount =
+(amount * gstRate) / 100;
+
+totalAmount =
+amount + gstAmount;
+
+}else{
+
+totalAmount = amount;
+
+originalAmount =
+amount / (1 + gstRate / 100);
+
+gstAmount =
+amount - originalAmount;
+
+}
+
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<div class="result-box">
+
+<h3>GST Result</h3>
+
+<p>
+Original Amount:
+<strong>
+₹${originalAmount.toFixed(2)}
+</strong>
+</p>
+
+<p>
+GST (${gstRate}%):
+<strong>
+₹${gstAmount.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Total Amount:
+<strong>
+₹${totalAmount.toFixed(2)}
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
