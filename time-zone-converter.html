@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Time Zone Converter - World Clock | QuickTools</title>
+
+<meta name="description"
+content="Free Time Zone Converter से अलग-अलग देशों और cities का current time और time difference आसानी से देखें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<p class="site-title">⚡ QuickTools</p>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h1>🌍 Time Zone Converter</h1>
+
+<p>
+दो अलग-अलग cities का current time और time difference आसानी से देखें।
+</p>
+
+
+<label for="city1">
+पहली City
+</label>
+
+<br>
+
+<select id="city1">
+
+<option value="Asia/Kolkata">
+🇮🇳 India - New Delhi
+</option>
+
+<option value="Asia/Dubai">
+🇦🇪 UAE - Dubai
+</option>
+
+<option value="Asia/Riyadh">
+🇸🇦 Saudi Arabia - Riyadh
+</option>
+
+<option value="Europe/London">
+🇬🇧 UK - London
+</option>
+
+<option value="Europe/Paris">
+🇫🇷 France - Paris
+</option>
+
+<option value="Asia/Tokyo">
+🇯🇵 Japan - Tokyo
+</option>
+
+<option value="Asia/Singapore">
+🇸🇬 Singapore
+</option>
+
+<option value="Australia/Sydney">
+🇦🇺 Australia - Sydney
+</option>
+
+<option value="America/New_York">
+🇺🇸 USA - New York
+</option>
+
+<option value="America/Los_Angeles">
+🇺🇸 USA - Los Angeles
+</option>
+
+</select>
+
+
+<br><br>
+
+
+<label for="city2">
+दूसरी City
+</label>
+
+<br>
+
+<select id="city2">
+
+<option value="America/New_York">
+🇺🇸 USA - New York
+</option>
+
+<option value="Asia/Kolkata">
+🇮🇳 India - New Delhi
+</option>
+
+<option value="Asia/Dubai">
+🇦🇪 UAE - Dubai
+</option>
+
+<option value="Asia/Riyadh">
+🇸🇦 Saudi Arabia - Riyadh
+</option>
+
+<option value="Europe/London">
+🇬🇧 UK - London
+</option>
+
+<option value="Europe/Paris">
+🇫🇷 France - Paris
+</option>
+
+<option value="Asia/Tokyo">
+🇯🇵 Japan - Tokyo
+</option>
+
+<option value="Asia/Singapore">
+🇸🇬 Singapore
+</option>
+
+<option value="Australia/Sydney">
+🇦🇺 Australia - Sydney
+</option>
+
+<option value="America/Los_Angeles">
+🇺🇸 USA - Los Angeles
+</option>
+
+</select>
+
+
+<br><br>
+
+
+<button onclick="showTime()">
+Check Current Time
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Time Zone Converter क्या है?</h2>
+
+<p>
+Time Zone Converter एक free online tool है जिसकी मदद से
+आप दुनिया की अलग-अलग cities का current time देख सकते हैं
+और उनके बीच का time difference समझ सकते हैं।
+</p>
+
+
+<h2>Time Zone कैसे Check करें?</h2>
+
+<p>
+पहली और दूसरी city select करें और
+<strong>Check Current Time</strong> button पर click करें।
+आपको दोनों cities का current time दिखाई देगा।
+</p>
+
+
+<h2>Time Zone Converter की खास बातें</h2>
+
+<p>
+✓ Free online time zone converter<br>
+✓ अलग-अलग countries का current time<br>
+✓ Time difference आसानी से देखें<br>
+✓ Mobile और computer दोनों पर काम करता है
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function getTimeInZone(timeZone){
+
+return new Intl.DateTimeFormat(
+"en-IN",
+{
+timeZone: timeZone,
+dateStyle: "medium",
+timeStyle: "medium"
+}
+).format(new Date());
+
+}
+
+
+function getOffset(timeZone){
+
+const parts =
+new Intl.DateTimeFormat(
+"en-US",
+{
+timeZone: timeZone,
+timeZoneName: "longOffset"
+}
+).formatToParts(new Date());
+
+const offset =
+parts.find(
+part => part.type === "timeZoneName"
+);
+
+return offset ? offset.value : "";
+
+}
+
+
+function showTime(){
+
+const city1 =
+document.getElementById("city1").value;
+
+const city2 =
+document.getElementById("city2").value;
+
+
+const time1 =
+getTimeInZone(city1);
+
+const time2 =
+getTimeInZone(city2);
+
+
+const offset1 =
+getOffset(city1);
+
+const offset2 =
+getOffset(city2);
+
+
+document.getElementById("result")
+.innerHTML = `
+
+<div class="result-box">
+
+<h3>🌍 Current Time</h3>
+
+<p>
+<strong>पहली City:</strong><br>
+${time1}<br>
+${offset1}
+</p>
+
+<hr>
+
+<p>
+<strong>दूसरी City:</strong><br>
+${time2}<br>
+${offset2}
+</p>
+
+<p>
+Time automatically आपके device की current date के
+according calculate होता है।
+</p>
+
+</div>
+
+`;
+
+}
+
+
+showTime();
+
+</script>
+
+
+</body>
+
+</html>
