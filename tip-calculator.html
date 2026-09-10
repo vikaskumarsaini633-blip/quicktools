@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Tip Calculator - Calculate Tip & Total Bill | QuickTools</title>
+
+<meta name="description"
+content="Free Tip Calculator से bill amount, tip percentage और number of people डालकर tip amount, total bill और per person amount calculate करें।">
+
+<meta name="robots"
+content="index, follow">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<p class="site-title">⚡ QuickTools</p>
+
+<p>Free Online Tools</p>
+
+</header>
+
+
+<main>
+
+<a href="index.html">
+
+<button>
+← Back to Home
+</button>
+
+</a>
+
+
+<section class="compressor">
+
+<h1>💰 Tip Calculator</h1>
+
+<p>
+Bill amount, tip percentage और लोगों की संख्या डालकर
+tip और total bill आसानी से calculate करें।
+</p>
+
+
+<input
+type="number"
+id="billAmount"
+placeholder="Bill Amount (₹)"
+step="0.01"
+min="0"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="tipPercent"
+placeholder="Tip Percentage (%)"
+step="0.1"
+min="0"
+>
+
+
+<br><br>
+
+
+<input
+type="number"
+id="people"
+placeholder="Number of People"
+step="1"
+min="1"
+value="1"
+>
+
+
+<br><br>
+
+
+<button onclick="calculateTip()">
+Calculate Tip
+</button>
+
+
+<div id="result"></div>
+
+</section>
+
+
+<section>
+
+<h2>Tip Calculator क्या है?</h2>
+
+<p>
+Tip Calculator एक free online tool है जिसकी मदद से
+आप bill amount और tip percentage के आधार पर tip amount
+और total bill आसानी से calculate कर सकते हैं।
+</p>
+
+
+<h2>Tip कैसे Calculate करें?</h2>
+
+<p>
+सबसे पहले bill amount डालें। फिर tip percentage और
+number of people डालें। इसके बाद Calculate Tip पर
+click करें।
+</p>
+
+
+<h2>Tip Calculator की खास बातें</h2>
+
+<p>
+✓ Free online tip calculator<br>
+✓ Tip amount calculate करें<br>
+✓ Total bill पता करें<br>
+✓ Per person amount देखें<br>
+✓ Mobile और computer दोनों पर इस्तेमाल करें
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>
+© 2026 QuickTools
+</p>
+
+</footer>
+
+
+<script>
+
+function calculateTip(){
+
+const bill =
+parseFloat(
+document.getElementById("billAmount").value
+);
+
+const tipPercent =
+parseFloat(
+document.getElementById("tipPercent").value
+);
+
+const people =
+parseInt(
+document.getElementById("people").value
+);
+
+
+if(
+isNaN(bill) ||
+isNaN(tipPercent) ||
+isNaN(people) ||
+bill <= 0 ||
+tipPercent < 0 ||
+people < 1
+){
+
+alert(
+"कृपया सही Bill Amount, Tip Percentage और Number of People डालें"
+);
+
+return;
+
+}
+
+
+const tipAmount =
+bill * tipPercent / 100;
+
+
+const totalAmount =
+bill + tipAmount;
+
+
+const perPerson =
+totalAmount / people;
+
+
+document.getElementById("result")
+.innerHTML = `
+
+<div class="result-box">
+
+<h3>Tip Result</h3>
+
+<p>
+Tip Amount:
+<strong>
+₹${tipAmount.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Total Bill:
+<strong>
+₹${totalAmount.toFixed(2)}
+</strong>
+</p>
+
+<p>
+Per Person:
+<strong>
+₹${perPerson.toFixed(2)}
+</strong>
+</p>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+
+</body>
+
+  </html>
